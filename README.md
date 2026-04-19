@@ -1,5 +1,8 @@
-# React + TypeScript + Vite
+# Trader Dashboard
 
+This is a React + TypeScript + Vite project for a trader dashboard.
+
+## Overview
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
