@@ -16,7 +16,7 @@ function App() {
               Trader<span className="text-blue-500">Dash</span>
             </h1>
             <p className="text-slate-500 text-xs font-bold tracking-[0.2em] uppercase">
-              Professional Terminal v3.12
+              Professional Terminal v3.13
             </p>
           </div>
         </div>
