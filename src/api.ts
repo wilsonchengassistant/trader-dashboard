@@ -24,8 +24,14 @@ export interface HistoryData {
   pnl: number;
 }
 
-// TODO: Replace with real API keys and endpoints
-// const BASE_URL = "/api";
+// --- API Client ---
+export { apiGet, apiGetThrottled, ApiError } from "./api/client";
+
+// Feature flag: use real API when key is configured
+export const USE_REAL_API =
+  import.meta.env.VITE_FINNHUB_API_KEY !== undefined &&
+  import.meta.env.VITE_FINNHUB_API_KEY !== "" &&
+  import.meta.env.VITE_FINNHUB_API_KEY !== "your_api_key_here";
 
 export const fetchMostActive = async (): Promise<Stock[]> => {
   // Mocking /api/market/most-active?limit=10
