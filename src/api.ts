@@ -27,6 +27,15 @@ export interface HistoryData {
 // --- API Client ---
 export { apiGet, apiGetThrottled, ApiError } from "./api/client";
 
+// --- Real API Adapters ---
+export {
+  fetchRealMostActive,
+  fetchRealPortfolio,
+  fetchRealHistory,
+} from "./api/adapters";
+export type { PortfolioHoldingConfig } from "./api/adapters";
+export { DEFAULT_PORTFOLIO } from "./api/adapters";
+
 // Feature flag: use real API when key is configured
 export const USE_REAL_API =
   import.meta.env.VITE_FINNHUB_API_KEY !== undefined &&
