@@ -1,6 +1,8 @@
 import MostActiveStocksPanel from "./components/MostActiveStocksPanel";
 import CurrentAssetsPanel from "./components/CurrentAssetsPanel";
 import AssetHistoryPanel from "./components/AssetHistoryPanel";
+import ApiStatusIndicator from "./components/ApiStatusIndicator";
+import { USE_REAL_API } from "./api";
 import { Layout } from "lucide-react";
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
             </div>
           </div>
           <div className="w-[1px] h-8 bg-slate-800"></div>
+          <ApiStatusIndicator />
+          <div className="w-[1px] h-8 bg-slate-800"></div>
           <div className="flex flex-col items-end">
             <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">
               Server Time
@@ -58,7 +62,8 @@ function App() {
 
       <footer className="text-center py-10 border-t border-slate-900 mt-12">
         <p className="text-slate-600 text-xs font-medium tracking-wide">
-          © 2026 TRADERDASH TERMINAL • DATA PROVIDED BY MOCK API • BUILT WITH
+          © 2026 TRADERDASH TERMINAL • DATA PROVIDED BY{" "}
+          {USE_REAL_API ? "FINNHUB API" : "MOCK API"} • BUILT WITH
           OPENCLAW
         </p>
       </footer>
