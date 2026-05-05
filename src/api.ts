@@ -24,6 +24,8 @@ export interface HistoryData {
   pnl: number;
 }
 
+import { fetchRealMostActive, fetchRealPortfolio, fetchRealHistory } from "./api/adapters";
+
 // --- API Client ---
 export { apiGet, apiGetThrottled, ApiError } from "./api/client";
 
@@ -43,6 +45,13 @@ export const USE_REAL_API =
   import.meta.env.VITE_FINNHUB_API_KEY !== "your_api_key_here";
 
 export const fetchMostActive = async (): Promise<Stock[]> => {
+  if (USE_REAL_API) {
+    try {
+      return await fetchRealMostActive();
+    } catch (err) {
+      console.warn("[API] Finnhub fetchMostActive failed, falling back to mock", err);
+    }
+  }
   // Mocking /api/market/most-active?limit=10
   return [
     { ticker: "AAPL", name: "Apple Inc.", price: 185.92, change: 1.25, volume: "52M", turnover: "$9.6B" },
@@ -59,6 +68,13 @@ export const fetchMostActive = async (): Promise<Stock[]> => {
 };
 
 export const fetchCurrentPortfolio = async () => {
+  if (USE_REAL_API) {
+    try {
+      return await fetchRealPortfolio();
+    } catch (err) {
+      console.warn("[API] Finnhub fetchCurrentPortfolio failed, falling back to mock", err);
+    }
+  }
   // Mocking /api/portfolio/current
   const holdings: Holding[] = [
     { ticker: "AAPL", qty: 50, avgCost: 150.0, currentPrice: 185.92, marketValue: 9296.0, pnl: 1796.0, pnlPercent: 23.95 },
@@ -76,6 +92,13 @@ export const fetchCurrentPortfolio = async () => {
 };
 
 export const fetchHistory = async (range: string): Promise<HistoryData[]> => {
+  if (USE_REAL_API) {
+    try {
+      return await fetchRealHistory(range);
+    } catch (err) {
+      console.warn("[API] Finnhub fetchHistory failed, falling back to mock", err);
+    }
+  }
   // Mocking /api/portfolio/history?range={range}
   const points = range === '1d' ? 24 : range === '1w' ? 7 : 30;
   const data: HistoryData[] = [];
